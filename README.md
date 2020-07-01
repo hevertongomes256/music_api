@@ -12,7 +12,7 @@ virtualenv
 
 
 ```bash
-pip install requirients.txt
+pip install -r requirients.txt
 ```
 
 # Banco de Dados
