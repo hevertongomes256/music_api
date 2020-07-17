@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAdminUser, IsAuthenticated, AllowAny
 
 class MusicList(generics.ListCreateAPIView):
 
-    queryset = Music.objects.all()
+    queryset = Music.objects.all().select_related('album')
     serializer_class = MusicSerializer
     ## Autenticação Básica: Apenas usuários logados acessam a url
     authentication_classes = [SessionAuthentication]
@@ -68,7 +68,7 @@ class AlbumList(generics.ListCreateAPIView):
 
 class AlbumDetail(generics.RetrieveUpdateDestroyAPIView):
 
-    queryset = Album.objects.all()
+    queryset = Album.objects.all().select_related('band')
     serializer_class = AlbumSerializer
     authentication_classes = [SessionAuthentication]
     permission_classes = (IsAuthenticated, )
@@ -86,7 +86,7 @@ class MemberList(generics.ListCreateAPIView):
 
 class MemberDetail(generics.RetrieveUpdateDestroyAPIView):
 
-    queryset = Member.objects.all()
+    queryset = Member.objects.all().select_related('band')
     serializer_class = MemberSerializer
     authentication_classes = [SessionAuthentication]
     permission_classes = (IsAuthenticated, )
