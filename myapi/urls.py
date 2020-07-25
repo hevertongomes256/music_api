@@ -19,35 +19,10 @@ schema_view = get_schema_view(
     permission_classes=(permissions.AllowAny,),
 )
 
-# Routers usados para criação de funcionalidades com viewsets
-
-#router.register(r'musics', views.MusicList)
-#router.register(r'bands', views.BandViewSet)
-#router.register(r'albums', views.AlbumViewSet)
-#router.register(r'members', views.MemberViewSet)
-
 urlpatterns = [
-    # path('', include(router.urls)),
+    path('api/v1/', include('music_app.urls')),
     path('', schema_view.with_ui('swagger', 
                                     cache_timeout=0), name='schema-swagger-ui'),
-    path("redoc", schema_view.with_ui('redoc',
-                                    cache_timeout=0), name='schema-redoc'),
-
-
-    # url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
-    
     path('admin/', admin.site.urls),
-
-    path('musics/', views.MusicList.as_view()),
-    path('musics/<int:pk>', views.MusicDetail.as_view()),
-
-    path('bands/', views.BandList.as_view()),
-    path('bands/<int:pk>', views.BandDetail.as_view()),
-
-    path('albums/', views.AlbumList.as_view()),
-    path('albums/<int:pk>', views.AlbumDetail.as_view()),
-
-    path('members/', views.MemberList.as_view()),
-    path('members/<int>', views.MemberDetail.as_view()),
 
 ]

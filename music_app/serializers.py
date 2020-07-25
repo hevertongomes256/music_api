@@ -11,8 +11,6 @@ class BandSerializer(serializers.ModelSerializer):
 
 class AlbumSerializer(serializers.ModelSerializer):
 
-    band = BandSerializer()
-
     class Meta:
         
         model = Album
@@ -21,8 +19,6 @@ class AlbumSerializer(serializers.ModelSerializer):
 
 class MusicSerializer(serializers.ModelSerializer):
 
-    album = AlbumSerializer()
-
     class Meta:
 
         model = Music
@@ -30,8 +26,6 @@ class MusicSerializer(serializers.ModelSerializer):
 
 
 class MemberSerializer(serializers.ModelSerializer):
-
-    band = BandSerializer()
 
     class Meta:
 

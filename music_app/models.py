@@ -21,12 +21,20 @@ class Album(models.Model):
     class Meta:
         db_table = 'album'
     
+    def __str__(self):
+        return self.title
+    
+    
 class Band(models.Model):
 
     name = models.CharField(max_length=20)
 
     class Meta:
         db_table = 'band'
+    
+    def __str__(self):
+        return self.name
+    
 
 class Member(models.Model):
 
@@ -36,3 +44,7 @@ class Member(models.Model):
 
     class Meta:
         db_table = 'member'
+    
+    def __str__(self):
+        return self.name
+    

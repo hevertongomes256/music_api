@@ -5,6 +5,10 @@ from .serializers import MusicSerializer, BandSerializer, AlbumSerializer, Membe
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAdminUser, IsAuthenticated, AllowAny
 
+
+"""
+    API V1
+"""
 class MusicList(generics.ListCreateAPIView):
 
     queryset = Music.objects.all().select_related('album')
@@ -15,6 +19,11 @@ class MusicList(generics.ListCreateAPIView):
     # Implementação de filtros
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ['title']
+
+    def get_queryset(self):
+        if self.kwargs.get('album_pk'):
+            return self.queryset.filter(album_id=self.kwargs.get('album_pk'))
+        return self.queryset.all()
 
 
 class MusicDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -65,6 +74,7 @@ class AlbumList(generics.ListCreateAPIView):
     filter_backends = (filters.DjangoFilterBackend,)
     filter_fields = ['title', 'date', 'band']
     filter_class = AlbumFilter
+
 
 class AlbumDetail(generics.RetrieveUpdateDestroyAPIView):
 
